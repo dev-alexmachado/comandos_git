@@ -31,14 +31,14 @@ Se as credenciais forem globais:
 - `git commit -m "Mensagem do commit"` - cria um novo *commit* no repositório local, ou seja, uma nova versão do seu projeto, e um ponto seguro de onde você pode prosseguir com o seu projeto
 
 > [!TIP]
-> Para facilitar, caso tenha dúvidas sobre qual ordem executar os comandos, faça a seguinte ordem:
-> `git init`
-> `git config --global --unset user.name`
-> `git config --global --unset user.email`
-> `git config user.name "Seu Nome de Usuário do GitHub"`
-> `git config user.email "seu_email_do_github@servidor.com"`
-> `git add .`
-> `git commit -m "Mensagem do seu commit"`
+> Para facilitar, caso tenha dúvidas sobre qual ordem executar os comandos, faça a seguinte ordem:<br>
+> `git init`<br>
+> `git config --global --unset user.name`<br>
+> `git config --global --unset user.email`<br>
+> `git config user.name "Seu Nome de Usuário do GitHub"`<br>
+> `git config user.email "seu_email_do_github@servidor.com"`<br>
+> `git add .`<br>
+> `git commit -m "Mensagem do seu commit"`<br>
 
 ## Passando o repositório local para o remoto (GitHub)
 
