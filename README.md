@@ -68,3 +68,46 @@ Após isso, o seu repositório está atualizado e ***commitado***.
 
 > [!NOTE]
 > Este procedimento deve ser executado toda vez que o usuário realizar alguma alteração no seu projeto, desde que deseje que tal alteração permaneça no seu projeto.
+
+> [!WARNING]
+> Ao retornar para um repositório em que o *push* já foi feito anteriorente, existe a possibilidade dele ter sido modificado em outra máquina ou mesmo diretamente no repositório remoto. Caso isso tenha acontecido, vão existir duas versões diferentes do mesmo repositório, o que pode ocasionar em conflitos na hora de efetuar o *push*.
+> Para evitar isso, é interessante executar o comando `git pull` antes de qualquer alteração no repositório local. Isso fará com que o repositório local seja atualizado com a versão do repositório remoto, e evitará este problema.
+
+Após enviar o seu repositório local para o repositório remoto, obviamente você retornará mais cedo ou mais tarde para o seu projeto, a fim de dar manutenção ou de corrigir possíveis erros encontrados após o *push*, ou até mesmo após a implementação da sua aplicação. Ao alterar qualquer coisa do seu projeto, seja no código-fonte, imagens estáticas ou mesmo na estrutura de pastas, o seu projeto terá atualizações não incluídas na versão que foi *commitada*.
+
+Isso significa que, ao terminar as novas alterações, você deverá *commitar* novamente o seu projeto, a fim de criar uma nova versão dele. O procedimento para fazer isso não necessariamente será identico ao da primeira vez, já que desta vez você não precisará inicializar um repositório local, já que ele já existe, nem precisará vinculá-lo ao GitHub: ele já está vinculado. As únicas coisas que precisará fazer é adicionar as alterações ao *stage*, *commitar* e fazer o *push*, que é o reenvio do seu repositório local ao remoto, atualizando a versão que está no GitHub com a versão que está no seu computador.
+
+Para fazer isso, execute no terminal os comandos a seguir:
+- `git add <nome-do-novo-arquivo>` - adiciona novo arquivo ao *stage; ou `git add <nome-do-arquivo-alterado>` - adiciona o arquivo modificado ao *stage*; ou `git add .` - adiciona todos os arquivos novos e alterados ao *stage*
+- `git commit -m "Mensagem do commit."` - *commita*, ou seja, cria uma nova versão do projeto, diferente da versão anterior
+- `git push` - envia a nova versão do projeto para o GitHub
+
+> [!TIP]
+> Caso tenha dúvidas, se tiver seguido o passo a passo para o primeiro *commit*, e/ou se tiver as credenciais já setadas, pode simplesmente executar os comandos a seguir na seguinte ordem:<br>
+> `git add .`<br>
+> `git commit -m "Mensagem do commit."`<br>
+> `git push`<br>
+
+## Como mudar repositório local de máquina
+
+Caso esteja trabalhando em um projeto, e por algum motivo, queira trabalhar no mesmo projeto em outra máquina, é necessário clonar o seu repositório para esta nova máquina, desde que ela tenha o programa Git instalado.
+
+- Acesse o GitHub, e dentro do repositório, clique no botão verde **Code** no canto direito da tela da página do repositório
+- Copie a URL do endereço do repositório que se encontra nesse botão
+- Veja na imagem abaixo
+![alt text](image.png)
+- Volte ao diretório do seu repositório local e execute o comando a seguir
+- `git clone <endereco-do-repositorio-remoto>` - baixa o repositório remoto para a máquina que não possui uma versão desse repositório
+
+> [!NOTE]
+> Este procedimento fará com que um repositório que antes estava em outra máquina agora passe para sua nova máquina, mas isso deve ser feito somente caso esta nova máquina não tenha uma versão anterior desse mesmo repositório. Caso o PC em questão já tenha uma versão anterior deste repositório, o procedimento a ser feito é outro, que veremos a seguir.
+
+## Como atualizar um repositório já existente com a versão remota
+
+Caso a máquina que você esteja mexendo já tenha uma versão anterior do repositório, então o procedimento a ser feito não é um clone, mas sim um ***pull***, que atualiza o repositório local com a versão do repositório remoto. Basta executar o comando a seguir:
+
+- `git pull` - atualiza o repositório local com a versão mais recente do repositório remoto.
+
+> [!IMPORTANT]
+> Ao retornar para um repositório já existente, é uma boa prática começar executando `git pull` antes de começar a trabalhar, para não esquecer e acabar gerando duas versões atualizadas diferentes do mesmo repositório, o que pode ocasionar conflitos entre as versões, e consequentemente a perda de progresso do seu projeto.
+
