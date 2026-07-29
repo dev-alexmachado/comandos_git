@@ -2,6 +2,17 @@
 
 Segue abaixo a lista de comandos git e a ordem necessária para executar determinadas ações.
 
+## Sumário
+
+1. [Novo repositório local](#novo-repositório-local)
+1.1 [Caso as credenciais setadas do usuário sejam diferentes do desenvolvedor](#caso-as-credenciais-setadas-do-usuário-sejam-diferentes-do-desenvolvedor)
+1.2 [Caso as credenciais não estejam setadas](#caso-as-credenciais-não-estejam-setadas)
+1.3 [Quando as credenciais estiverem setadas](#quando-as-credenciais-estiverem-setadas)
+2. [Passando o repositório local para o remoto (GitHub)](#passando-o-repositório-local-para-o-remoto-github)
+3. [Como atualizar o repositório remoto](#como-atualizar-o-repositório-remoto)
+4. [Como mudar repositório local de máquina](#como-mudar-repositório-local-de-máquina)
+5. [Como atualizar um repositório já existente com a versão remota](#como-atualizar-um-repositório-já-existente-com-a-versão-remota)
+
 ## Novo repositório local
 
 - `git init` - cria novo repositório local.
