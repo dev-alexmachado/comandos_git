@@ -19,6 +19,11 @@ Segue abaixo a lista de comandos git e a ordem necessária para executar determi
 6. [Como desfazer o `git add`](#como-desfazer-o-git-add)
 7. [Como desfazer um *commit*](#como-desfazer-um-commit)
 8. [Como desfazer um *push*](#como-desfazer-um-push)
+9. [Como trabalhar com *branch*](#como-trabalhar-com-branch)
+9.1 [Para *commitar* numa *branch* separada](#para-commitar-numa-branch-separada)<br>
+9.2 [Como fazer o *merge*](#como-fazer-o-merge)<br>
+9.3 [Como deletar uma *branch*](#como-deletar-uma-branch)<br>
+10. [.gitignore](#gitignore)
 
 ## Novo repositório local
 
