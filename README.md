@@ -314,3 +314,118 @@ git revert <hash>
 
 > [!NOTE]
 > O comando `revert` na verdade cria um novo *commit* a partir de um *commit* anterior. Ou seja, ele duplica um *commit* e joga para um novo *commit*. Isso significa que, ao fazer um `revert`, você será jogado para um editor para escrever uma mensagem do *revert*, como se fosse um novo *commit*, e aí ele cria um novo *commit* a partir do *commit* desejado.
+
+## Como trabalhar com *branch*
+
+> [!NOTE]
+> Uma ***branch*** é uma ramificação do seu repositório, uma linha de desenvolvimento separada dentro do repositório. Ela permite trabalhar em uma alteração sem mexer diretamente no código principal.
+> Imagine seu repositório como uma árvore. O tronco principal é a branch ***main***, que é criada antes de se realizar o seu primeiro *push*. Uma nova branch funciona como um novo galho dessa árvore.
+> Pode ser interessante criar uma nova *branch* quando houver necessidade de se *commitar* mudanças no seu projeto, mas mantendo o projeto principal intacto. Dessa forma, você *commita* as mudanças, mas deixando elas separadas do projeto principal. Isso evita que uma mudança não finalizada, ou que precise ser revisada antes de ser implementada interfira no funcionamento do programa principal.
+> Você cria uma *branch* quando vai implementar uma nova funcionalidade, vai corrigir um bug, quer testar uma ideia sem afetar a branch principal, ou quando várias pessoas vão trabalhar em partes diferentes do projeto.
+
+Para criar uma nova *branch*:
+~~~
+git branch nome-da-branch
+~~~
+
+Para criar e mudar automaticamente para uma nova *branch*:
+~~~
+git switch -c nome-da-branch
+~~~
+
+Ou
+~~~
+git checkout -b nome-da-branch
+~~~
+
+Para mudar para uma *branch* já criada:
+~~~
+git switch nome-da-branch
+~~~
+
+Ou
+~~~
+git checkout nome-da-branch
+~~~
+
+Para visualizar todas as *branches* criadas, e também para ver em qual *branch* está atualmente:
+~~~
+git branch
+~~~
+
+Ou
+~~~
+git status
+~~~
+
+> [!TIP]
+> `git status` além de mostrar a branch atual, também mostra o estado dos arquivos.
+
+### Para *commitar* numa *branch* separada
+
+Caso a *branch* não exista:
+~~~
+git switch -c nome-da-branch
+git add .
+git commit -m "Mensagem do commit."
+~~~
+
+Caso a *branch* já exista e você está na *main*:
+~~~
+git branch
+git switch nome-da-branch
+git add .
+git commit -m "Mensagem do commit."
+~~~
+
+Para fazer o *push* de uma *branch*:
+~~~
+git push -u origin nome-da-branch
+~~~
+
+### Como fazer o *merge*
+
+> [!NOTE]
+> Um ***merge*** é o processo de juntar duas *branches*. Quando uma funcionalidade ou correção já está pronta, você une essa branch com a branch principal, geralmente main. Em outras palavras: uma branch foi criada para desenvolver algo, e depois de terminar, você junta esse trabalho com a branch principal.
+
+> [!CAUTION]
+> O *merge* implementa as mudanças feitas na *branch* diretamente na *main*. Portanto, ao fazer um *merge*, sempre tenha certeza do que está fazendo, pois pode prejudicar seu repositório, e também seu time de desenvolvimento. Portanto, antes de fazer merge, verifique se está na branch correta e faça git pull para pegar as alterações mais recentes da branch principal.
+> Se duas branches alteraram a mesma parte de um arquivo, o Git pode gerar conflitos. Nesse caso, você precisa resolver manualmente os arquivos marcados pelo Git.
+> Faça commit antes de fazer o merge: se a branch que você está juntando ainda tiver alterações pendentes, o merge pode ficar confuso. Evite mesclar em cima de uma branch desatualizada, e use merge com cuidado em projetos compartilhados.
+
+> [!WARNING]
+> Para fazer o *merge*, você deverá estar na *main*, pois é nela que o *merge* será feito. Portanto, certifique-se de que esteja na *main* antes de executar o *merge*.
+
+Para fazer o *merge* na *main*:
+~~~
+git switch main
+git pull
+git merge nome-da-branch
+~~~
+
+### Como deletar uma *branch*
+
+Caso não precise mais de uma *branch* você pode deletá-la.
+
+> [!CAUTION]
+> Tenha certeza de que realmente deseja deletar uma *branch*. Ao fazer isso, todo seu conteúdo vai embora junto.
+
+Para deletar uma *branch* que já foi mesclada:
+~~~
+git branch -d nome-da-branch
+~~~
+
+Para deletar uma *branch* que ainda não foi mesclada e você deseja forçar a exclusão:
+~~~
+git branch -D nome-da-branch
+~~~
+
+## .gitignore
+
+> [!NOTE]
+> o ***.gitignore*** é um arquivo criado para listar todos os diretórios e pastas que o usuário não deseja adicionar ao *stage*, mesmo que ele execute o comando `git add .`. Este arquivo é útil para evitar que o usuário insira um comando `git add` para cada arquivo que deseja adicionar ao *stage*, mas deseja que alguns poucos arquivos ou um diretório específico fique de fora.
+> Outro motivo importante para fazer uso do *.gitignore* é para evitar esquecimentos ao executar o `git add .`.
+
+Para criar o *.gitignore*, basta criar no seu projeto, de preferência no diretório raiz do projeto, o arquivo com o nome `.gitignore` (exatamente este nome, incluindo o ponto), e listar dentro dele todos os arquivos que deseja deixar de fora do *staging*. Caso o arquivo esteja dentro de um subdiretório, informe o nome da `pasta/nome do arquivo`.
+
+Caso deseje deixar de fora do *staging* todo os arquivos de um tipo específico, coloque dentro do *.gitignore* um asterístico (*) seguido da extensão que deseja deixar de fora. Exemplo: se quiser excluir todos os arquivos do tipo `.txt`, então digite dentro do *.gitignore* `*.txt`.
