@@ -4,14 +4,17 @@ Segue abaixo a lista de comandos git e a ordem necessária para executar determi
 
 ## Sumário
 
-1. [Novo repositório local](#novo-repositório-local)
-1.1 [Caso as credenciais setadas do usuário sejam diferentes do desenvolvedor](#caso-as-credenciais-setadas-do-usuário-sejam-diferentes-do-desenvolvedor)
-1.2 [Caso as credenciais não estejam setadas](#caso-as-credenciais-não-estejam-setadas)
-1.3 [Quando as credenciais estiverem setadas](#quando-as-credenciais-estiverem-setadas)
+1. [Novo repositório local](#novo-repositório-local)<br>
+1.1 [Caso as credenciais setadas do usuário sejam diferentes do desenvolvedor](#caso-as-credenciais-setadas-do-usuário-sejam-diferentes-do-desenvolvedor)<br>
+1.2 [Caso as credenciais não estejam setadas](#caso-as-credenciais-não-estejam-setadas)<br>
+1.3 [Quando as credenciais estiverem setadas](#quando-as-credenciais-estiverem-setadas)<br>
 2. [Passando o repositório local para o remoto (GitHub)](#passando-o-repositório-local-para-o-remoto-github)
 3. [Como atualizar o repositório remoto](#como-atualizar-o-repositório-remoto)
 4. [Como mudar repositório local de máquina](#como-mudar-repositório-local-de-máquina)
 5. [Como atualizar um repositório já existente com a versão remota](#como-atualizar-um-repositório-já-existente-com-a-versão-remota)
+6. [Como desfazer o `git add`](#como-desfazer-o-git-add)
+7. [Como desfazer um *commit*](#como-desfazer-um-commit)
+8. [Como desfazer um *push*](#como-desfazer-um-push)
 
 ## Novo repositório local
 
@@ -122,3 +125,43 @@ Caso a máquina que você esteja mexendo já tenha uma versão anterior do repos
 > [!IMPORTANT]
 > Ao retornar para um repositório já existente, é uma boa prática começar executando `git pull` antes de começar a trabalhar, para não esquecer e acabar gerando duas versões atualizadas diferentes do mesmo repositório, o que pode ocasionar conflitos entre as versões, e consequentemente a perda de progresso do seu projeto.
 
+## Como desfazer o `git add`
+
+Às vezes, pode acontecer de você executar um `git add .`, por exemplo, mas se arrepdender antes de fazer um `git commit`. Nesse caso, o que você deseja fazer é retornar para o estado do *commit* anterior, ou seja, desfazer o `git add`. Vamos aprender como fazer isso.
+
+- `git restore --staged <arquivo>` - retira um arquivo específico do *stage*, e mantém o restante para o *commit*
+- `git restore --staged .` - retira todos os arquivos do *stage*
+
+> [!IMPORTANT]
+> Os comandos acima retiram os arquivos do *stage*, mas mantém as alterações feitas até logo antes da execução do `git add`. Caso queira desfazer também as mudanças feitas no arquivo, faça os comandos a seguir:
+
+- `git restore <arquivo>` - retira um arquivo específico do *stage* e elimina as mudanças feitas no arquivo
+- `git restore .` - retira todos os arquivos modificados do *stage* e elimina todas as mudanças feitas no repositório
+
+## Como desfazer um *commit*
+
+Pode acontecer, também, de você já ter feito um *commit*, mas ainda não atualizou o repositório remoto. Há três opções. Veja a seguir como desfazê-lo:
+
+- `git reset --soft HEAD~1` - remove o commit, mas mantém as mudanças prontas para serem recommitadas, mantendo o *stage*
+- `git reset HEAD~1` - remove o commit e desfaz o *stage*, mas mantém as alterações no arquivo
+- `git reset --hard HEAD~1` - remove o commit e elimina todas as alterações feitas nele, ou seja, faz o projeto voltar ao mesmo estado do último *commit*
+
+> [!WARNING]
+> O número na frente de `HEAD~` corresponde ao número de *commits* que o usuário deseja retornar. Exemplo: caso o usuário deseja retornar ao último *commit*, o número será 1, ou seja, `git reset HEAD~1`. Já se o usuário desejar retornar dois *commits* anteriores, o número será 2, como em `git reset HEAD~2`, e assim por diante.
+
+## Como desfazer um *push*
+
+Agora, caso você já tenha feito o *push*, ou seja, já atualizado o repositório remoto, o procedimento é diferente.
+
+- `git revert HEAD` - desfaz o último *commit* já enviado.
+
+Caso deseje reverter para um *commit* específico, você precisará saber o *hash* do *commits* para o qual deseja retornar. Para isso, faça:
+
+- `git log --oneline` - exibe o histórico de *commits* e seus *hashs*
+
+Depois, execute:
+
+- `git revert <hash>` - retorna para um *commit* específico
+
+> [!NOTE]
+> O comando `revert` na verdade cria um novo *commit* a partir de um *commit* anterior. Ou seja, ele duplica um *commit* e joga para um novo *commit*. Isso significa que, ao fazer um `revert`, você será jogado para um editor para escrever uma mensagem do *revert*, como se fosse um novo *commit*, e aí ele cria um novo *commit* a partir do *commit* desejado.
