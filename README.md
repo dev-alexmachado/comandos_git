@@ -23,6 +23,9 @@ Para criar novo repositório local:
 git init
 ~~~
 
+> [!CAUTION]
+> O comando `git init`só é executado na primeira vez em que você cria um novo repositório, e só deve ser repetido  quando houver um novo repositório para ser criado. Jamais execute esse comando em um repositório caso você já tenha executado o *push* alguma vez nesse mesmo repositório.
+
 Para listar as configurações ativas do Git:
 ~~~
 git config --list
