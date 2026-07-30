@@ -90,6 +90,15 @@ git config --global user.email "email@servidor.com"
 
 ### Quando as credenciais estiverem setadas
 
+Uma nova versão do seu projeto é chamado de ***commit***. Mas para fazer o *commit* do seu projeto, antes é necessário salvar o seu trabalho no que chamamos de ***stage***, que é um passo antes do *commit*.
+
+Para verificar quais pastas e arquivos estão prontos para ir para o *staging*:
+~~~
+git status
+~~~
+
+Neste momento, o terminal irá listas as pastas e arquivos na cor vermelha. Isso indica que essas pastas e arquivos estão prontas para irem para o *staging*.
+
 Para enviar para o *stage* o arquivo que deseja fazer o *commit*:
 ~~~
 git add <nome-do-arquivo>
@@ -100,9 +109,16 @@ Ou para enviar todos os arquivos alterados para o *stage*:
 git add .
 ~~~
 
+Após executar um `git add`, execute novamente o comando `git status` para verificar se as pastas e arquivos que antes estavam em vermelho agora estão em verde. Se isso acontecer, significa que eles estão prontos para irem para o *commit*. Caso ainda apareça alguma pasta ou arquivo na cor vermelha, significa que este arquivo ou pasta em específico não está no *staging*, e portanto ficará de fora do *commit*.
+
 Para criar um novo *commit* no repositório local, ou seja, uma nova versão do seu projeto, e um ponto seguro de onde você pode prosseguir com o seu projeto:
 ~~~
 git commit -m "Mensagem do commit"
+~~~
+
+Você poderá verificar o histórico de *commits* do seu projeto com o seguinte comando:
+~~~
+git log
 ~~~
 
 > [!TIP]
