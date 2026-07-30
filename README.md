@@ -1,6 +1,8 @@
 # Comandos Git para iniciantes
 
-<img src="git.png" alt="Git logo" align="center">
+<p align="center">
+    <img src="git.png" alt="Git logo" width="100px">
+</p>
 
 Segue abaixo a lista de comandos git e a ordem necessária para executar determinadas ações.
 
