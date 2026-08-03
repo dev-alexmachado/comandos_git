@@ -4,6 +4,11 @@
     <img src="git.png" alt="Git logo" width="100px">
 </p>
 
+> [!IMPORTANT]
+> Para executar os comandos git, é necessário ter o git instalado na máquina. Ele pode ser baixado neste [link](https://git-scm.com/install/windows).
+> Os comandos git são executados em CLI, ou seja, no terminal.
+> Qualquer terminal pode executar comandos git: git bash, power shell, prompt command, etc...
+
 Segue abaixo a lista de comandos git e a ordem necessária para executar determinadas ações.
 
 ## Sumário
